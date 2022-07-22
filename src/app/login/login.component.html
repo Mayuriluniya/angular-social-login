@@ -1,0 +1,131 @@
+<div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="loginForm">
+        <mat-form-field>
+            <input type="email" matInput placeholder="Email Address" formControlName="email">
+           
+            <mat-error *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('required')">
+              Email is required</mat-error>
+            <mat-error *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('email')">
+              Email must be a valid Email</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <input type="password" matInput placeholder="Password" formControlName="password">
+            <mat-error
+              *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('required')">
+              Password is required</mat-error>
+          </mat-form-field>
+  
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-0">
+              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+              <label class="form-check-label" for="form2Example3">
+                Remember me
+              </label>
+              
+              
+            </div>
+            
+            
+            </div>
+           
+          
+          
+  
+  
+         
+  
+        
+          <button class="btn-width" mat-raised-button color="primary" (click)="onlogin()">Login</button>
+          <a href="#!" class="text-body">Forgot password?</a>
+          
+        
+  
+        <p class="horizontal-line-text">
+          <span>Or Sign in with</span>
+          
+        </p>
+  
+  
+    
+       
+        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+
+       
+          <button id="buttondiv"(click)="GoogleSignIn()" mat-raised-button >
+          
+            
+            <img [src]="'assets/images/google.svg'" alt="google"/>
+          </button>
+        
+          <button (click)="FacebookSignIn()" mat-raised-button >
+            <img [src]="'assets/images/facebook.svg'" alt="google"/>
+          </button>
+          <button mat-raised-button >
+            <img [src]="'assets/images/linkedin.svg'" alt="google"/>
+          </button>
+         
+          
+          
+          
+
+            
+        
+        
+          
+          
+          
+        
+        
+        </div>
+    </form>
+        
+  
+        
+  
+      
+        
+  
+        
+      </mat-card-content>
+      
+        
+      
+      
+      
+    </mat-card>
+  
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+
+  function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: " + response.credential);
+  }
+  window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: "439661215585-do4je6ege5n1if21cjn84r9vtmd8nc9r.apps.googleusercontent.com",
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("buttonDiv"),
+      { theme: "outline", size: "large" }  // customization attributes
+    );
+    google.accounts.id.prompt(); // also display the One Tap dialog
+  }
+</script>
+<div id="buttonDiv"></div>
+
+ 
+
+  
+  
+  
+  
